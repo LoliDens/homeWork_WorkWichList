@@ -13,10 +13,8 @@ namespace homeWork_WorkWichList
             const string CommandSum = "sum";
             const string CommandExit = "exit";
 
-
             List<int> numbers = new List<int>(); 
-            bool isExit = false;
-            
+            bool isExit = false;            
 
             while (isExit == false) 
             {
@@ -47,8 +45,6 @@ namespace homeWork_WorkWichList
                 Console.ReadKey();
                 Console.Clear();
             }
-
-
         }
 
     
