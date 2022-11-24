@@ -18,7 +18,7 @@ namespace homeWork_WorkWichList
 
             while (isExit == false) 
             {
-                Console.WriteLine($"Введите числа для нахождения их суммы" +
+                Console.WriteLine($"Введите число для нахождения их суммы" +
                   $"\n{CommandSum} - для вывода суммы всех введенных чисел" +
                   $"\n{CommandExit} - для выхода из программы");
                 string userInput = Console.ReadLine();
@@ -26,10 +26,7 @@ namespace homeWork_WorkWichList
                 switch (userInput) 
                 {
                     case CommandSum:
-                        Console.Write("Введенные вами числа: ");
-                        ShowList(numbers);
-                        int sum = FindSumInList(numbers);
-                        Console.WriteLine($"\nСумма введеных чисел: {sum}");
+                        PrintResultSum(numbers);
                         break;
 
                     case CommandExit:
@@ -37,8 +34,7 @@ namespace homeWork_WorkWichList
                         break;
                     
                     default:
-                        int number = Convert.ToInt32(userInput);
-                        numbers.Add(number);
+                        numbers.Add(ReadNumber());
                         break;
                 }
 
@@ -46,9 +42,16 @@ namespace homeWork_WorkWichList
                 Console.Clear();
             }
         }
+            
+        static void PrintResultSum(List<int> numbers)
+        {
+            Console.Write("Введенные вами числа: ");
+            ShowList(numbers);
+            int sum = GetSum(numbers);
+            Console.WriteLine($"\nСумма введеных чисел: {sum}");
+        }
 
-    
-        static int FindSumInList(List<int> numbers) 
+        static int GetSum(List<int> numbers) 
         {
             int sum = 0;
 
@@ -67,6 +70,20 @@ namespace homeWork_WorkWichList
                 Console.Write(number + " ");
             }
         }
-        
+
+        static int ReadNumber()
+        {
+            int result;
+            string numberForConvert = Console.ReadLine();
+
+            while (int.TryParse(numberForConvert, out result) == false)
+            {
+                Console.Write("Число введино неверно, повторите ввод: ");
+                numberForConvert = Console.ReadLine();
+            }
+
+            return result;
+        }
+
     }
 }
